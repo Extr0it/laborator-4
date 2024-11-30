@@ -177,6 +177,68 @@ int main(){
 
 
    
+//-----------------PROBLEMA 5 DIN LAB 4
+#include <limits.h>  //pt a folosi int max
+
+int main(){
+    int matrice[25][25];
+    int min = INT_MAX;  //Trebuie să inițializezi min cu o valoare mare(conteaza sa fie mai mare decat orice element din matrice)
+    int dimensiune;
+
+    printf("Introdu te rog dimensiunea matricei\n");
+    scanf("%d", &dimensiune);
+     // creearea matricei
+     for(int i  = 0; i<dimensiune; i++)
+     for(int j= 0; j<dimensiune; j++){
+       printf("Elementul [%d][%d]", i, j);
+       scanf("%d", &matrice[i][j]);
+    }
+    // afisarea matricei
+    // for(int i = 0; i < dimensiune; i++){
+    // for(int j = 0; j < dimensiune; j++){
+    //    printf("%d ", matrice[i][j]);
+    // }
+    // printf("\n");
+    // }
+
+    for(int i = 0; i<dimensiune; i++)
+    for(int j = 0; j<i; j++){       // elementele j de sub diagonala principala trebuie sa fie mai mici decat i obligatoriu
+
+        if(matrice[i][j] < min)
+        min = matrice[i][j];
+    }
+
+   printf("Deci minimul dintre nr de sub diagonala principala este : %d", min);
+
+
+    return 0;
+}
+
+///--------- EXPLICATIE  :::
+/*   sa zicem ca avem matricea : 10  3  5
+                                 2  4  6
+                                 8  7  1
+ 
+Și presupunem că min este inițializat cu 999(nu conteaza nr, doar sa fie mai mare decat oricare din elemente)
+
+Pasul 1:
+i = 1, j = 0 (primul element sub diagonala principală)
+matrice[1][0] = 2
+Verificăm: 2 < 999 (este adevărat), așadar min devine 2.
+
+Pasul 2:
+i = 2, j = 0 (următorul element sub diagonala principală)
+matrice[2][0] = 8
+Verificăm: 8 < 2 (nu este adevărat), deci min rămâne 2.
+
+Pasul 3:
+i = 2, j = 1 (următorul element sub diagonala principală)
+matrice[2][1] = 7
+Verificăm: 7 < 2 (nu este adevărat), deci min rămâne 2.
+
+Rezultatul final:
+La finalul parcurgerii tuturor elementelor sub diagonala principală, valoarea lui min va fi 2, care este valoarea minimă.
+*/
 
       
     
